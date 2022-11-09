@@ -31,11 +31,13 @@ function Dashboard() {
 
         return <Ionicons name={iconName} size={size} color={color} />
       },
+      tabBarActiveTintColor: 'blue',
+      tabBarInactiveTintColor: 'gray',
     })}
-    tabBarOptions={{
-      activeTintColor: 'blue',
-      inactiveTintColor: 'gray',
-    }}
+    // tabBarOptions={{
+    //   activeTintColor: 'blue',
+    //   inactiveTintColor: 'gray',
+    // }}
     >
         <Tab.Screen name="Home" component={Home} options={{headerShown: false}} />
         <Tab.Screen name="Explore" component={Explore} options={{headerShown: false}} />
@@ -50,9 +52,9 @@ const Routes = () => {
   return (
    <NavigationContainer>
     <Stack.Navigator initialRouteName="Login">
-        <Stack.Screen name="Login" component={Login} options={{headerShown: false}} />
-        <Stack.Screen name="Home" component={Dashboard} options={{headerShown: false}} />
-        <Stack.Screen name="Profile" component={Profile} options={{headerShown: false}} />
+        <Stack.Screen name="LoginScreen" component={Login} options={{headerShown: false}} />
+        <Stack.Screen name="DashboardScreen" component={Dashboard} options={{headerShown: false}} />
+        <Stack.Screen name="ProfileScreen" component={Profile} options={{headerShown: false}} />
     </Stack.Navigator>
    </NavigationContainer>
   );

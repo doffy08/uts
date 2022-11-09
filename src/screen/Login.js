@@ -1,5 +1,5 @@
 /* eslint-disable prettier/prettier */
-import { View, Text, ImageBackground, StyleSheet, Image, Alert} from 'react-native';
+import { View, Text, ImageBackground, StyleSheet, Image, Alert, BackHandler} from 'react-native';
 import React, {useState} from 'react';
 import { useNavigation } from '@react-navigation/native';
 
@@ -18,7 +18,7 @@ const Login = () => {
   const LoginPressed = () => {
     if (username === 'admin' && password === 'admin'){
       Alert.alert('Login Berhasil', 'Selamat datang admin!');
-      setTimeout(() => navigation.navigate('Home'))
+      setTimeout(() => navigation.navigate('DashboardScreen'))
     } else if (username === '' || password === '') {
       Alert.alert('Login Gagal', 'Username dan password harus diisi!');
     }
@@ -26,7 +26,6 @@ const Login = () => {
       Alert.alert('Login Gagal', 'Username atau password salah!');
     }
   };
-
 
   return (
     <View style={styles.container}>
