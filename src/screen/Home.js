@@ -1,7 +1,7 @@
 /* eslint-disable prettier/prettier */
 import { style } from 'deprecated-react-native-prop-types/DeprecatedTextPropTypes';
 import React, {useState, useEffect} from 'react';
-import { View, Text, StyleSheet, BackHandler, Image, ScrollView, useWindowDimensions} from 'react-native';
+import { View, Text, StyleSheet, BackHandler, Image, FlatList, useWindowDimensions} from 'react-native';
 
 import Card from '../component/Card';
 import SmallCard from '../component/SmallCard';
