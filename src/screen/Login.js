@@ -1,7 +1,14 @@
 /* eslint-disable prettier/prettier */
-import { View, Text, ImageBackground, StyleSheet, Image, Alert} from 'react-native';
+import {
+  View,
+  Text,
+  ImageBackground,
+  StyleSheet,
+  Image,
+  Alert,
+} from 'react-native';
 import React, {useState} from 'react';
-import { useNavigation } from '@react-navigation/native';
+import {useNavigation} from '@react-navigation/native';
 
 import CustomInput from '../component/CustomInput';
 import CustomButton from '../component/CustomButton';
@@ -16,26 +23,33 @@ const Login = () => {
   const navigation = useNavigation();
 
   const LoginPressed = () => {
-    if (username === 'admin' && password === 'admin'){
+    if (username === 'admin' && password === 'admin') {
       Alert.alert('Login Berhasil', 'Selamat datang admin!');
-      setTimeout(() => navigation.navigate('Home'))
+      setTimeout(() => navigation.navigate('HomeScreen'));
     } else if (username === '' || password === '') {
-      Alert.alert('Login Gagal', 'Username dan password harus diisi!');
-    }
-    else {
+      Alert.alert('Warning', 'Username dan password harus diisi!');
+    } else {
       Alert.alert('Login Gagal', 'Username atau password salah!');
     }
   };
-
 
   return (
     <View style={styles.container}>
       <ImageBackground source={Background} style={styles.background}>
         <View style={styles.componentWrapper}>
-          <Image source={Logo} style={{width: 150,height: 150,resizeMode: 'contain', alignSelf: 'center'}} />
+          <Image source={Logo} style={styles.logo} />
           <Text style={styles.title}>Wisata</Text>
-          <CustomInput placeholder="Username" value={username} onchange={setUsername} />
-          <CustomInput placeholder="Password" value={password} onchange={setPassword} securetextentry={true} />
+          <CustomInput
+            placeholder="Username"
+            value={username}
+            onchange={setUsername}
+          />
+          <CustomInput
+            placeholder="Password"
+            value={password}
+            onchange={setPassword}
+            securetextentry={true}
+          />
           <CustomButton placeholder="Login" onpress={LoginPressed} />
         </View>
       </ImageBackground>
@@ -53,6 +67,12 @@ const styles = StyleSheet.create({
   },
   componentWrapper: {
     marginVertical: '30%',
+  },
+  logo: {
+    width: 150,
+    height: 150,
+    resizeMode: 'contain',
+    alignSelf: 'center',
   },
   title: {
     textAlign: 'center',
