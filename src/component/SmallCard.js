@@ -1,23 +1,25 @@
 /* eslint-disable prettier/prettier */
-import {View, Text, StyleSheet, Image} from 'react-native';
+import {View, Text, StyleSheet, Image, TouchableOpacity} from 'react-native';
 import React from 'react';
 
 const SmallCard = props => {
-  const {url, title, subtitle} = props;
+  const {url, title, subtitle, onPress} = props;
   return (
-    <View style={styles.smallCardWrapper}>
+    <TouchableOpacity style={styles.smallCardWrapper} onPress={onPress}>
       <View style={styles.smallCard}>
         <Image source={{uri: `${url}`}} style={styles.smallCardImage} />
       </View>
       <Text style={styles.smallCardTitle}>{title}</Text>
       <Text style={styles.smallCardDescription}>{subtitle}</Text>
-    </View>
+    </TouchableOpacity>
   );
 };
 
 const styles = StyleSheet.create({
   smallCardWrapper: {
     width: '50%',
+    alignItems: 'center',
+    marginVertical: 10,
   },
   smallCard: {
     width: '90%',
@@ -34,9 +36,13 @@ const styles = StyleSheet.create({
   smallCardTitle: {
     fontWeight: 'bold',
     fontSize: 20,
+    alignSelf: 'flex-start',
+    marginLeft: 10,
   },
   smallCardDescription: {
     fontSize: 16,
+    alignSelf: 'flex-start',
+    marginLeft: 10,
   },
 });
 

@@ -7,12 +7,66 @@ import {
   BackHandler,
   Image,
   useWindowDimensions,
+  FlatList,
 } from 'react-native';
+import {useNavigation} from '@react-navigation/native';
 
 import Card from '../component/Card';
 import SmallCard from '../component/SmallCard';
 
+const DATA = [
+  {
+    id: 1,
+    title: 'Kebun Raya',
+    subtitle: 'Baturaden',
+    url: 'https://cdn0-production-images-kly.akamaized.net/icyy5lcPJOgxF8syp0khUhyPXI0=/640x360/smart/filters:quality(75):strip_icc():format(jpeg)/kly-media-production/medias/1095870/original/046601900_1451309142-20151228-taman_bunga-baturaden-purwokerto.jpg',
+  },
+  {
+    id: 2,
+    title: 'Curug Kembar',
+    subtitle: 'Baturaden',
+    url: 'https://s.yimg.com/ny/api/res/1.2/TBV77UMU4Zazg9p8QLG0yw--/YXBwaWQ9aGlnaGxhbmRlcjt3PTY0MDtoPTM2MA--/https://s.yimg.com/uu/api/res/1.2/SEVGAjWvOMuOiCSoGpsItg--~B/aD0zNzk7dz02NzM7YXBwaWQ9eXRhY2h5b24-/https://media.zenfs.com/id/liputan6_hosted_772/d25b5cb0e9a16f24f86b0f0b0291fe63',
+  },
+  {
+    id: 3,
+    title: 'Waduk Penjalin',
+    subtitle: 'Paguyangan',
+    url: 'http://assets.kompasiana.com/items/album/2020/03/13/fb-img-1584061912556-5e6ae716097f365cc676a632.jpg',
+  },
+  {
+    id: 4,
+    title: 'Waduk Penjalin',
+    subtitle: 'Paguyangan',
+    url: 'http://assets.kompasiana.com/items/album/2020/03/13/fb-img-1584061912556-5e6ae716097f365cc676a632.jpg',
+  },
+  {
+    id: 5,
+    title: 'Pantai Menganti',
+    subtitle: 'Kebumen',
+    url: 'https://www.djkn.kemenkeu.go.id/files/images/2022/03/49.jpg',
+  },
+  {
+    id: 6,
+    title: 'Lembah Asri',
+    subtitle: 'Serang',
+    url: 'https://dinporapar.purbalinggakab.go.id/wp-content/uploads/2021/03/01EZKPRPQS8RAAVFHQW1RKPHP3-scaled.jpg',
+  },
+  {
+    id: 7,
+    title: 'Owabong',
+    subtitle: 'Purbalingga',
+    url: 'https://assets.promediateknologi.com/crop/0x0:0x0/x/photo/2022/07/09/2872029693.jpg',
+  },
+  {
+    id: 9,
+    title: 'Kaligua',
+    subtitle: 'Pandansari',
+    url: 'http://dinbudpar.brebeskab.go.id/wp-content/uploads/2020/04/kebun-teh-kaligua-5e0a8d777301e.jpg',
+  },
+];
+
 const Home = () => {
+  const navigation = useNavigation();
   const {width} = useWindowDimensions();
   const backAction = () => {
     BackHandler.exitApp();
@@ -26,6 +80,17 @@ const Home = () => {
     };
   }, []);
 
+  const renderItem = ({item}) => (
+    <SmallCard
+      url={item.url}
+      title={item.title}
+      subtitle={item.subtitle}
+      onPress={() => {
+        navigation.navigate('Detail', {detail: item});
+      }}
+    />
+  );
+
   return (
     <View style={styles.container}>
       <View style={styles.headerWrapper}>
@@ -36,19 +101,18 @@ const Home = () => {
             style={styles.profileImage}
           />
         </View>
-        <Card text="Baturaden" />
-        <View style={styles.wisataSection}>
-          <SmallCard
-            url="https://cdn0-production-images-kly.akamaized.net/icyy5lcPJOgxF8syp0khUhyPXI0=/640x360/smart/filters:quality(75):strip_icc():format(jpeg)/kly-media-production/medias/1095870/original/046601900_1451309142-20151228-taman_bunga-baturaden-purwokerto.jpg"
-            title="Baturaden"
-            subtitle="@azkaken"
-          />
-          <SmallCard
-            url="https://s.yimg.com/ny/api/res/1.2/TBV77UMU4Zazg9p8QLG0yw--/YXBwaWQ9aGlnaGxhbmRlcjt3PTY0MDtoPTM2MA--/https://s.yimg.com/uu/api/res/1.2/SEVGAjWvOMuOiCSoGpsItg--~B/aD0zNzk7dz02NzM7YXBwaWQ9eXRhY2h5b24-/https://media.zenfs.com/id/liputan6_hosted_772/d25b5cb0e9a16f24f86b0f0b0291fe63"
-            title="Air Terjun"
-            subtitle="@azkaken"
-          />
-        </View>
+      </View>
+      <View style={styles.contentWrapper}>
+        {/* <View style={styles.wisataSection}> */}
+        <FlatList
+          data={DATA}
+          renderItem={renderItem}
+          keyExtractor={item => item.id}
+          contentContainerStyle={styles.itemWrapper}
+          numColumns={3}
+          style={styles.flatlist}
+        />
+        {/* </View> */}
       </View>
     </View>
   );
@@ -59,7 +123,7 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   headerWrapper: {
-    margin: 5,
+    backgroundColor: 'rgba(231, 226, 226, 0.46)',
   },
   userWrapper: {
     flexDirection: 'row',
@@ -76,11 +140,18 @@ const styles = StyleSheet.create({
     height: 50,
     borderRadius: 50,
   },
-  wisataSection: {
-    marginVertical: 10,
+  contentWrapper: {
+    // marginVertical: 10,
     flexDirection: 'row',
     marginHorizontal: 10,
-    flexWrap: 'wrap',
+    marginBottom: '20%',
+    // flexWrap: 'wrap',
+  },
+  itemWrapper: {
+    flexDirection: 'column',
+  },
+  flatlist: {
+    marginTop: 20,
   },
 });
 

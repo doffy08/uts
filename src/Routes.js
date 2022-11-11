@@ -7,7 +7,7 @@ import Ionicons from 'react-native-vector-icons/Ionicons';
 
 import Login from './screen/Login';
 import Home from './screen/Home';
-import Explore from './screen/Explore';
+import Deskripsi from './screen/Deskripsi';
 import Profile from './screen/Profile';
 
 const Tab = createBottomTabNavigator();
@@ -35,11 +35,6 @@ function Dashboard() {
       })}>
       <Tab.Screen name="Home" component={Home} options={{headerShown: false}} />
       <Tab.Screen
-        name="Explore"
-        component={Explore}
-        options={{headerShown: false}}
-      />
-      <Tab.Screen
         name="Profile"
         component={Profile}
         options={{headerShown: false}}
@@ -53,7 +48,7 @@ const Stack = createNativeStackNavigator();
 const Routes = () => {
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName="Login">
+      <Stack.Navigator initialRouteName="HomeScreen">
         <Stack.Screen
           name="LoginScreen"
           component={Login}
@@ -64,6 +59,7 @@ const Routes = () => {
           component={Dashboard}
           options={{headerShown: false}}
         />
+        <Stack.Screen name="Detail" component={Deskripsi} />
         <Stack.Screen
           name="ProfileScreen"
           component={Profile}
