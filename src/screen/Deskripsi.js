@@ -7,6 +7,12 @@ const Deskripsi = ({route}) => {
     <View style={styles.container}>
       <View style={styles.imageWrapper}>
         <Image source={{uri: route.params.detail.url}} style={styles.image} />
+        <Text style={styles.title}>
+          {route.params.detail.title} - {route.params.detail.subtitle}
+        </Text>
+        <Text style={styles.description}>
+          {route.params.detail.description}
+        </Text>
       </View>
     </View>
   );
@@ -27,5 +33,14 @@ const styles = StyleSheet.create({
     width: '100%',
     height: '60%',
     resizeMode: 'cover',
+  },
+  title: {
+    fontSize: 20,
+    marginVertical: 10,
+    fontWeight: 'bold',
+  },
+  description: {
+    fontSize: 16,
+    textAlign: 'justify',
   },
 });
