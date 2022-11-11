@@ -60,11 +60,6 @@ const Routes = () => {
           options={{headerShown: false}}
         />
         <Stack.Screen name="Detail" component={Deskripsi} />
-        <Stack.Screen
-          name="ProfileScreen"
-          component={Profile}
-          options={{headerShown: false}}
-        />
       </Stack.Navigator>
     </NavigationContainer>
   );

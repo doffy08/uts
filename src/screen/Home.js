@@ -8,6 +8,7 @@ import {
   Image,
   useWindowDimensions,
   FlatList,
+  TouchableOpacity,
 } from 'react-native';
 import {useNavigation} from '@react-navigation/native';
 
@@ -108,10 +109,12 @@ const Home = () => {
       <View style={styles.headerWrapper}>
         <View style={styles.userWrapper}>
           <Text style={styles.userText}>Halo, Admin!</Text>
-          <Image
-            source={require('../../assets/pante.png')}
-            style={styles.profileImage}
-          />
+          <TouchableOpacity onPress={() => navigation.navigate('Profile')}>
+            <Image
+              source={require('../../assets/pante.png')}
+              style={styles.profileImage}
+            />
+          </TouchableOpacity>
         </View>
       </View>
       <View style={styles.contentWrapper}>
@@ -123,7 +126,6 @@ const Home = () => {
           numColumns={3}
           style={styles.flatlist}
         />
-        {/* </View> */}
       </View>
     </View>
   );
